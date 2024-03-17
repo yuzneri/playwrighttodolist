@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+</head>
+<body>
+<div id="app">
+    <h1>ToDo List</h1>
+    <input v-model="newToDo" @keyup.enter="addTodo">
+    <button id="add" @click="addTodo">追加</button>
+    <ol id="todos">
+        <li v-for="(todo, index) in todos" :key="index" v-bind:id="'todo-' + (index + 1)">
+            <span class="todo-text">{{ todo }}</span>
+            <button v-bind:id="'del-' + (index + 1)" @click="removeTodo(index)">削除</button>
+        </li>
+    </ol>
+</div>
+<script src="todo.js"></script>
+</body>
+</html>
