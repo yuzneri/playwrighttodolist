@@ -8,8 +8,9 @@ function getCookie(name) {
     try {
         return JSON.parse(document.cookie.split(';').find(cookie => cookie.split('=')[0] === name).split('=')[1]);
     } catch (e) {
-        setCookie('todos', ["ToDoを追加してみましょう", "ToDoを削除してみましょう"])
-        return getCookie('todos')
+        const defaultCookie = ["ToDoを追加してみましょう", "ToDoを削除してみましょう"]
+        setCookie('todos', defaultCookie)
+        return defaultCookie
     }
 }
 

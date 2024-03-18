@@ -4,19 +4,46 @@
     <meta charset="UTF-8">
     <title>ToDo List</title>
     <script src="https://unpkg.com/vue@3.0.0"></script>
+    <style>
+        .warn {
+            color: red;
+            font-size: 10px;
+        }
+    </style>
 </head>
 <body>
+<img src="todoLogo.jpg" alt="todo logo">
+<h1>ToDo List</h1>
+<p title="追加方法">追加ボタンを押すとタスクを追加できます。</p>
+<p title="削除方法">削除ボタンを押すとタスクを削除できます。</p>
 <div id="app">
-    <h1>ToDo List</h1>
-    <input v-model="newToDo" @keyup.enter="addTodo">
-    <button id="add" @click="addTodo">追加</button>
+    <label for="new-todo">新規タスク</label>
+    <input v-model="newToDo" @keyup.enter="addTodo" placeholder="やること" id="new-todo" class="input todo new">
+    <button type="button" data-testid="add" id="todo-add" @click="addTodo" v-bind:disabled="!newToDo">追加</button>
+    <span v-bind:hidden="!!newToDo" class="warn">タスクを入力してください</span>
     <ol id="todos">
-        <li v-for="(todo, index) in todos" :key="index" v-bind:id="'todo-' + (index + 1)">
-            <span class="todo-text">{{ todo }}</span>
-            <button v-bind:id="'del-' + (index + 1)" @click="removeTodo(index)">削除</button>
+        <li v-for="(todo, index) in todos" :key="index" v-bind:id="'todo-' + (index + 1)" class="todo">
+            <div class="todo-text">{{ todo }}</div>
+            <button class="todo-del" @click="removeTodo(index)">削除</button>
         </li>
     </ol>
 </div>
 <script src="todo.js"></script>
+<hr>
+<input type="checkbox" id="checkbox"><br>
+<input type="radio" id="radio1" name="radio"><input type="radio" id="radio2" name="radio"><br>
+<select id="select">
+    <option value="curry">カレー</option>
+    <option value="pizza">ピザ</option>
+    <option value="ramen">ラーメン</option>
+</select><br>
+<select id="multiple" multiple >
+    <option value="curry">カレー</option>
+    <option value="pizza">ピザ</option>
+    <option value="ramen">ラーメン</option>
+</select><br>
+<input type="file" id="file">
+<hr>
+<p>このサイトは「<a href="https://neln.net/b/nt01/">Playwrightのあるきかた ～ゼロから始めるE2Eテスト～</a>」の動作確認用です</p>
 </body>
 </html>
